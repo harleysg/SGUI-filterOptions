@@ -75,7 +75,12 @@ function sg_filterOptions(ctx, params = {}) {
   // Capturar la entrada del input
   function handleFilter(inputElement, selector, selectorContainer) {
     inputElement.onfocus = () => {
+      document
+        .querySelectorAll(`.${classNames.menu}`)
+        .forEach((elm) => (elm.style.display = "none"));
+
       document.querySelector(selectorContainer).style.display = "block";
+
       document
         .querySelectorAll(selector)
         .forEach((elm) => (elm.style.display = "block"));
