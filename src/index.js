@@ -76,6 +76,10 @@ function sg_filterOptions(ctx, params = {}) {
   function handleFilter(inputElement, selector, selectorContainer) {
     inputElement.onfocus = () => {
       document
+        .querySelectorAll(selector)
+        .forEach((elm) => (elm.style.display = "block"));
+
+      document
         .querySelectorAll(`.${classNames.menu}`)
         .forEach((elm) => (elm.style.display = "none"));
 
