@@ -1,0 +1,158 @@
+$nameGame: "filterOptions";
+
+.game-#{$nameGame} {
+
+  --sg-themeColor-1:  #22645b;
+  --sg-themeColor-2:   #87c4bf;
+  --sg-themeColor-3:  #7b7b7b;
+  --sg-themeColor-shadow-blur:  0px 2px 3px 0 var(--sg-themeColor-1);
+
+  --sg-menu-bg:  rgba(255, 255, 255, 0.8);
+  --sg-input-border-color: var(--sg-themeColor-1);
+  --sg-disabled-color: var(--sg-themeColor-3); 
+  --sg-disabled-bg:  #ececec; 
+  --sg-animation-duration: 0.9s;
+  --sg-input-size: 2rem;
+  // -------------------
+  --size-delete: 24px;
+  // -------------------
+
+  min-height: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  width: 95%;
+  
+  &_input {
+    border: 1px solid var(--sg-input-border-color);
+    min-height: var(--sg-input-size);
+    padding: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMC44IDIwLjgiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojMjQ2Zjc2O30uY2xzLTJ7ZmlsbDojZmZmO308L3N0eWxlPjwvZGVmcz48ZyBpZD0iQ2FwYV8yIiBkYXRhLW5hbWU9IkNhcGEgMiI+PGcgaWQ9IkNhcGFfMS0yIiBkYXRhLW5hbWU9IkNhcGEgMSI+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iMjAuOCIgaGVpZ2h0PSIyMC44Ii8+PHBvbHlnb24gY2xhc3M9ImNscy0yIiBwb2ludHM9IjEwLjM5IDEyLjkyIDYuNzggNy44OCAxNC4wMiA3Ljg4IDEwLjM5IDEyLjkyIi8+PC9nPjwvZz48L3N2Zz4=),
+      linear-gradient(
+          90deg,
+          var(--theme-body-bg, white),
+          var(--theme-body-bg, white) calc(100% - var(--sg-input-size)),
+          var(--sg-themeColor-1) var(--sg-input-size)
+      );
+  }
+  
+  &_menu {
+    position: absolute;
+    top: var(--sg-input-size);
+    bottom: auto;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 0.5rem;
+    max-height: 300px;
+    width: 95%;
+    margin: 0 auto;
+    overflow: auto;
+    background-color: var(--sg-menu-bg);
+    box-shadow: var(--sg-themeColor-shadow-blur);
+  }
+  &_menu-item,
+  &_menu {
+    user-select: none;
+    display: none;
+  }
+  
+  &_response-item,
+  &_menu-item,
+  &_menu {
+    transition: opacity var(--sg-animation-duration) ease-in-out;
+    animation: game-mathSelect_inputfadeIn var(--sg-animation-duration);
+  }
+  &_response-item,
+  &_menu-item {
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+    padding: 1rem 0.2rem;
+    box-shadow: 0px 0 0px 1px #ececec, 0px 2px 3px 0 #d1d1d1;
+    cursor: pointer;
+    &:hover {
+      color: var(--sg-themeColor-1);
+      box-shadow: 0px 0 0px 1px var(--sg-themeColor-1), var(--sg-themeColor-shadow-blur);
+    }
+  }
+  &_response-item {
+    display: flex;
+    padding: 0.1rem 0.5rem 0.4rem 0.1rem;
+    background-color: var(--sg-themeColor-2);
+    margin: 10px 5px;
+    &.bien,
+    &.is-good {
+        box-shadow: -2px 0 0 var(--color_good, rgba(43, 191, 88, 0.8));
+        background-color: var(--color_good, rgba(43, 191, 88, 0.8));
+        .game-#{$nameGame}_response-delete {
+            &:before {
+              background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiDQogICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCg0KICAgIDxnPg0KICAgICAgICA8dGl0bGU+YmFja2dyb3VuZDwvdGl0bGU+DQogICAgICAgIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPg0KICAgIDwvZz4NCiAgICA8Zz4NCiAgICAgICAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPg0KICAgICAgICA8cGF0aCBpZD0ic3ZnXzEiIGZpbGw9Im5vbmUiIGQ9Im0wLDBsMjQsMGwwLDI0bC0yNCwwbDAsLTI0eiIvPg0KICAgICAgICA8cGF0aCBzdHJva2U9Im51bGwiIGZpbGw9IiMyNDZmNzYiIGlkPSJzdmdfMiIgZD0ibTE4LjMwMzg2LDUuODgzMDY1bC05LjA1MDY0LDguNTU4NTJsLTMuNTU3MDgsLTMuMzUwNjhsLTEuOTM2NDgsMS44MzExOGw1LjQ5MzU2LDUuMTk0ODVsMTAuOTg3MTIsLTEwLjM4OTdsLTEuOTM2NDgsLTEuODQ0MTd6Ii8+DQogICAgPC9nPg0KPC9zdmc+");
+            }
+        }
+    }
+    &.mal,
+    &.is-wrong {
+        box-shadow: -2px 0 0 var(--color_wrong, rgba(198, 78, 90, 0.8));
+        background-color: var(--color_wrong, rgba(198, 78, 90, 0.8));
+        .game-#{$nameGame}_response-delete {
+            &:before {
+              background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiDQogICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCg0KICAgIDxnPg0KICAgICAgICA8dGl0bGU+YmFja2dyb3VuZDwvdGl0bGU+DQogICAgICAgIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0xIiB4PSItMSIvPg0KICAgIDwvZz4NCiAgICA8Zz4NCiAgICAgICAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPg0KICAgICAgICA8cGF0aCBpZD0ic3ZnXzEiIGZpbGw9Im5vbmUiIGQ9Im0wLDBsMjQsMGwwLDI0bC0yNCwwbDAsLTI0eiIvPg0KICAgICAgICA8cGF0aCBmaWxsPSIjNzUyZjMxIiBzdHJva2U9Im51bGwiIGlkPSJzdmdfMiIgZD0ibTE2LjE1ODk4LDUuNzQ3NTA5bC00LjE1ODk3OSw0LjA0ODQ4OGwtNC4xNTg5NzksLTQuMDQ4NDg4bC0yLjI2NDE1NSwyLjIwNDAwM2w0LjE1ODk3OSw0LjA0ODQ4OGwtNC4xNTg5NzksNC4wNDg0ODhsMi4yNjQxNTUsMi4yMDQwMDNsNC4xNTg5NzksLTQuMDQ4NDg4bDQuMTU4OTc5LDQuMDQ4NDg4bDIuMjY0MTU1LC0yLjIwNDAwM2wtNC4xNTg5NzksLTQuMDQ4NDg4bDQuMTU4OTc5LC00LjA0ODQ4OGwtMi4yNjQxNTUsLTIuMjA0MDAzeiIvPg0KICAgIDwvZz4NCjwvc3ZnPg==");
+            }
+        }
+    }
+  }
+
+  &_response-delete {
+    padding-right: 0.5rem;
+    min-height: var(--size-delete);
+    min-width: var(--size-delete);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    &::before {
+        content: '';
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iYmxhY2siIHdpZHRoPSIxOHB4IiBoZWlnaHQ9IjE4cHgiPg0KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPg0KICAgIDxwYXRoIGZpbGw9IiMyNDZmNzYiIGQ9Ik0xNiA5djEwSDhWOWg4bS0xLjUtNmgtNWwtMSAxSDV2MmgxNFY0aC0zLjVsLTEtMXpNMTggN0g2djEyYzAgMS4xLjkgMiAyIDJoOGMxLjEgMCAyLS45IDItMlY3eiIvPg0KPC9zdmc+");
+        height: 100%;
+        max-height: var(--size-delete);
+        width: var(--size-delete);
+        background-position: center;
+        background-size: cover;
+    }
+  }
+  
+  &-isDisabled {
+    pointer-events: none;
+    background-color: var(--sg-disabled-bg);
+    color:  var(--sg-disabled-color);
+  }
+  @keyframes game-mathSelect_inputfadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: rgba(gray, 0);
+  }
+  
+  ::-webkit-scrollbar {
+      width: 6px;
+      background-color: rgba(gray, 0);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: var(--sg-themeColor-1);
+  }
+}
+
