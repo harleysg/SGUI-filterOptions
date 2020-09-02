@@ -150,20 +150,44 @@ function sg_filterOptions(ctx, params = {}) {
     );
   }
 
+  function reloadWith({ element }) {
+    const $eraserFilter = document.querySelector(element);
+
+    $eraserFilter &&
+      $eraserFilter.addEventListener("click", () => {
+        [].slice
+          .call(document.querySelectorAll(`.${classNames.responseDelete}`))
+          .map(handleClear);
+
+        function handleClear(item) {
+          item.click();
+        }
+      });
+  }
+
   init();
+
+  return {
+    reloadWith
+  };
 }
 
-sg_filterOptions(document.getElementById("matchSelect_1"), {
-  wordList: [
-    "Establish, operate, and support an SFOB and 3 forward operational bases (FOBs).",
-    "Provide 3 special operations command and control elements to conventional headquarters at corps level or higher.",
-    "Train and prepare SF teams for deployment.",
-    "Direct, support, and sustain deployed SF teams.",
-    "Develop, organize, equip, train, and advise or direct indigenous military and paramilitary forces.",
-    "Perform unilateral SF operations.",
-    "As headquarters commandant, the Headquarters and Headquarters Company  (HHC) commander is responsible for the movement, internal administration, and physical security of the group headquarters and the SFOB operations center."
-  ]
-});
+const reloadFilter = sg_filterOptions(
+  document.getElementById("matchSelect_1"),
+  {
+    wordList: [
+      "Establish, operate, and support an SFOB and 3 forward operational bases (FOBs).",
+      "Provide 3 special operations command and control elements to conventional headquarters at corps level or higher.",
+      "Train and prepare SF teams for deployment.",
+      "Direct, support, and sustain deployed SF teams.",
+      "Develop, organize, equip, train, and advise or direct indigenous military and paramilitary forces.",
+      "Perform unilateral SF operations.",
+      "As headquarters commandant, the Headquarters and Headquarters Company  (HHC) commander is responsible for the movement, internal administration, and physical security of the group headquarters and the SFOB operations center."
+    ]
+  }
+);
+
+reloadFilter.reloadWith({ element: `.reloadFilter` });
 
 sg_filterOptions(document.getElementById("matchSelect_2"), {
   wordList: [
